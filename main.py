@@ -4,7 +4,7 @@
 A program/v1 entry for make.fun competition
 u-4z4ghtbwm1fn7mibrqum4bxgfghhgqzriyhd8v3-one-line-0be61e5a.
 
-The program writes a single funny line (at most 100 characters) to
+The program writes a single funny line (at most 140 characters) to
 /output/entry.txt.
 
 It is fully deterministic: the same line is written on every run, with no
@@ -23,6 +23,7 @@ LINE = "My plant died, so I bought a plastic one. Now I have to dust its corpse 
 
 
 def main() -> None:
+    assert 1 <= len(LINE) <= 140 and LINE.strip(), "entry line fails the 1-140 character gate"
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
